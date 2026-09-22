@@ -1,0 +1,5 @@
+music.mp3 -> mp3/
+notes.xyz -> xyz/
+photo.jpg -> jpg/
+report.pdf -> pdf/
+video.mp4 -> mp4/

@@ -6,16 +6,22 @@ import shutil
 
 folder = Path(input("Enter the folder path: "))
 moved_count = 0
+
 if not folder.exists():
     print("Folder does not exist.")
     exit()
+
+log_file = folder / "organization_log.txt"
+
 for file in folder.iterdir():
-    if file.is_file():
+    if file.is_file() and file.name != "organization_log.txt":
         extension = file.suffix.lower()
         folder_name = extension[1:] if extension else "unknown"
         destination = folder / folder_name
         destination.mkdir(exist_ok=True)
+
         target = destination / file.name
+
         if target.exists():
             print(f"Skipped: {file.name} already exists.")
         else:
@@ -23,5 +29,8 @@ for file in folder.iterdir():
             moved_count += 1
             print(f"Moved: {file.name} -> {folder_name}/")
 
+            with open(log_file, "a") as log:
+                log.write(f"{file.name} -> {folder_name}/\n")
 
 print(f"\nFinished! {moved_count} file{'s' if moved_count != 1 else ''} moved.")
+print(f"Log saved to: {log_file}")

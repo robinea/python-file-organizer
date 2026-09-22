@@ -9,6 +9,7 @@ A simple Python tool that automatically organizes files into folders based on th
 - Prevents accidental overwrites
 - Shows files that were moved or skipped
 - Displays a final summary
+- Creates a log file recording moved files
 
 ## Technologies
 
